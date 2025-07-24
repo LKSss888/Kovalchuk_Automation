@@ -1,53 +1,89 @@
-class StringUtils:
-    """
-    Класс с полезными утилитами для обработки и анализа строк
-    """
+import pytest
+from string_utils import StringUtils
 
-    def capitalize(self, string: str) -> str:
-        """
-        Принимает на вход текст, делает первую букву заглавной
-        и возвращает этот же текст
-        Пример: `capitilize("skypro") -> "Skypro"`
-        """
-        return string.capitalize()
 
-    def trim(self, string: str) -> str:
-        """
-        Принимает на вход текст и удаляет пробелы в начале, если они есть
-        Пример: `trim("   skypro") -> "skypro"`
-        """
-        whitespace = " "
-        while string.startswith(whitespace):
-            string = string.removeprefix(whitespace)
-        return string
+string_utils = StringUtils()
 
-    def contains(self, string: str, symbol: str) -> bool:
-        """
-        Возвращает `True`, если строка содержит искомый символ
-        и `False` - если нет
-        Параметры:
-            `string` - строка для обработки
-            `symbol` - искомый символ
-        Пример 1: `contains("SkyPro", "S") -> True`
-        Пример 2: `contains("SkyPro", "U") -> False`
-        """
-        res = False
-        try:
-            res = string.index(symbol) > -1
-        except ValueError:
-            pass
+# 1 ----------------------------------------------------------------------------
 
-        return res
+@pytest.mark.positive
+@pytest.mark.parametrize("input_str, expected", [
+    ("skypro", "Skypro"),
+    ("hello world", "Hello world"),
+    ("python", "Python"),
+])
+def test_capitalize_positive(input_str, expected):
+    assert string_utils.capitalize(input_str) == expected
 
-    def delete_symbol(self, string: str, symbol: str) -> str:
-        """
-        Удаляет все подстроки из переданной строки
-        Параметры:
-            `string` - строка для обработки
-            `symbol` - искомый символ для удаления
-        Пример 1: `delete_symbol("SkyPro", "k") -> "SyPro"`
-        Пример 2: `delete_symbol("SkyPro", "Pro") -> "Sky"`
-        """
-        if self.contains(string, symbol):
-            string = string.replace(symbol, "")
-        return string
+
+@pytest.mark.negative
+@pytest.mark.parametrize("input_str, expected", [
+    ("123abc", "123abc"),
+    ("", ""),
+    ("   ", "   "),
+])
+def test_capitalize_negative(input_str, expected):
+    assert string_utils.capitalize(input_str) == expected
+
+# 2 ----------------------------------------------------------------------------
+
+@pytest.mark.positive
+@pytest.mark.parametrize("word, liter, expected", [
+    ("Good", "o", True),
+    ("Beer", "B", True),
+    ("Night", "h", True),
+])
+def test_contains_positive(word, liter, expected):
+    assert string_utils.contains(word, liter) == expected
+
+
+@pytest.mark.negative
+@pytest.mark.parametrize("word, liter, expected", [
+    ("Good", "A", False),
+    ("Beer", "+", False),
+    ("Night", "   ", False),
+])
+def test_contains_negative(word, liter, expected):
+    assert string_utils.contains(word, liter) == expected
+
+# 3 ----------------------------------------------------------------------------
+
+@pytest.mark.positive
+@pytest.mark.parametrize("text, expected", [
+    ("    skypro", "skypro"),
+    ("    hello", "hello"),
+    ("     04 апреля", "04 апреля"),
+])
+def test_trim_positive(text, expected):
+    assert string_utils.trim(text) == expected
+
+
+@pytest.mark.negative
+@pytest.mark.parametrize("text, expected", [
+    ("123abc     ", "123abc     "),
+    ("     ", ""),
+    ("04 апреля", "04 апреля"),
+])
+def test_trim_negative(text, expected):
+    assert string_utils.trim(text) == expected
+
+# 4 ----------------------------------------------------------------------------
+
+@pytest.mark.positive
+@pytest.mark.parametrize("text, liter, expected", [
+    ("skypro", "k", "sypro"),
+    ("world", "orld", "w"),
+    ("python", "on", "pyth"),
+])
+def test_delete_symbol_positive(text, liter, expected):
+    assert string_utils.delete_symbol(text, liter) == expected
+
+
+@pytest.mark.negative
+@pytest.mark.parametrize("text, liter, expected", [
+    ("123abc", "123456", "123abc"),  # я не понимаю какой тут ОР
+    (None, None, AttributeError),   # я не понимаю какой тут ОР
+    ("world", "world", ''),  # я не понимаю какой тут ОР
+])
+def test_delete_symbol_negative(text, liter, expected):
+    assert string_utils.delete_symbol(text, liter) == expected
