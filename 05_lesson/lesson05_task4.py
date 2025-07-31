@@ -35,7 +35,7 @@ search_input_c.click()
 
 # Вывести текст с зеленой плашки в консоль.
 element = driver.find_element(By.CSS_SELECTOR, ".flash.success").text
-print(element.text)
+print(element)
 
 # Закрыть браузер
 driver.quit()  
