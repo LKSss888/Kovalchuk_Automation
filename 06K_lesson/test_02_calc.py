@@ -16,7 +16,6 @@ def test_calculator():
         driver.get("https://bonigarcia.dev/selenium-webdriver-java/slow-calculator.html")
         
         print("Страница загружена")
-        time.sleep(2)  # Даем время для полной загрузки
         
         # 2. Ввести значение задержки
         print("Устанавливаем задержку 45 секунд...")
