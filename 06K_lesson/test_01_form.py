@@ -28,9 +28,6 @@ def test_form_validation():
         wait.until(EC.presence_of_element_located((By.TAG_NAME, "body")))
         print("Страница загружена")
         
-        # Даем дополнительное время для загрузки всех элементов
-        time.sleep(2)
-        
         # Проверяем, видим ли мы форму
         form_elements = driver.find_elements(By.CSS_SELECTOR, "input, button")
         print(f"Найдено элементов формы: {len(form_elements)}")
@@ -95,10 +92,7 @@ def test_form_validation():
                 print("Кнопка Submit найдена по тексту и нажата")
             except:
                 print("Кнопка Submit не найдена")
-        
-        # Ждем применения стилей
-        time.sleep(2)
-        
+          
         # 4. Проверить, что поле Zip code подсвечено красным
         print("Проверяем поле Zip code...")
         try:

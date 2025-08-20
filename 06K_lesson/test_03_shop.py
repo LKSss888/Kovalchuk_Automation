@@ -53,7 +53,6 @@ def test_shopping_cart():
                 )
                 add_button.click()
                 print(f"✓ Добавлен товар: {product_name}")
-                time.sleep(0.5)
             except Exception as e:
                 print(f"Ошибка при добавлении {product_name}: {e}")
         
