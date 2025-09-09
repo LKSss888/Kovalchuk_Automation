@@ -1,0 +1,1 @@
+[{"uid":"a0948e5a02a90239","name":"Проверка работы калькулятора с задержкой","time":{"start":1757442719255,"stop":1757442723509,"duration":4254},"status":"passed","severity":"normal"},{"uid":"9d01b6946449571b","name":"Проверка итоговой суммы заказа","time":{"start":1757442728634,"stop":1757442733895,"duration":5261},"status":"passed","severity":"critical"}]
