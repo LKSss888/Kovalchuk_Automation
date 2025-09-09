@@ -1,0 +1,3 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"Тест проверяет корректность вычислений калькулятора с установленной задержкой","4254","Проверка работы калькулятора с задержкой","tests","2025-09-09","passed","2025-09-09","TestCalculator","test_calculator","",""
+"Тест проверяет корректность расчета итоговой суммы при добавлении нескольких товаров в корзину","5261","Проверка итоговой суммы заказа","tests","2025-09-09","passed","2025-09-09","TestShopping","test_shopping","",""

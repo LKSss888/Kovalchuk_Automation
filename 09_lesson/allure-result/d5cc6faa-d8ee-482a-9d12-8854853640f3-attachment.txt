@@ -1,0 +1,4 @@
+Пытаемся подключиться к БД...
+URL: sqlite:///test.db
+❌ Ошибка подключения: Not an executable object: 'SELECT version()'
+Проверьте данные в config.py
